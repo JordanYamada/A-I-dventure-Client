@@ -23,7 +23,7 @@ const Header: React.FC<HeaderProps> = ({ user, setUser }) => {
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
         <Navbar.Brand as={Link} to="/">
-          Home {user ? user.email : ''}
+          Home {user ? user.client : ''}
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

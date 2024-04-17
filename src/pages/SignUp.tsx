@@ -6,14 +6,13 @@ import { api } from "../utilities/utilities";
 
 // Define the User interface
 interface User {
-  email: string;
-  user: string;
+  client: string;
 }
 
 // Define the SignUpResponse interface
 interface SignUpResponse {
   token: string;
-  user: string;
+  client: string;
 }
 
 const SignUp: React.FC = () => {
@@ -39,12 +38,12 @@ const SignUp: React.FC = () => {
       });
       if (response.status === 201) {
         console.log('successfully signed up, user info', response.data);
-        const { token, user } = response.data;
+        const { token, client } = response.data;
         // save auth token so it can be used
         localStorage.setItem("token", token);
         api.defaults.headers.common["Authorization"] = `Token ${token}`;
         // set user info for the app
-        setUser({ email: emailInput });
+        setUser({client});
       }
     } catch (error) {
       console.error('Error signing up:', error);

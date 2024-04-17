@@ -2,14 +2,14 @@ import axios, { AxiosResponse } from "axios";
 
 // Define the shape of the response data
 interface UserData {
-    user: string;
+    client: string;
     token: string;
 }
 
 // Define the shape of the user object
 export interface User {
-    user: string;
-    email: string;
+    client: string;
+    // email: string;
 }
 
 
@@ -19,14 +19,14 @@ export const api = axios.create({
 })
 
 // Define the type of the parameters and return value for userLogin function
-export const userLogin = async(email: string, password: string): Promise<{ user: string; email: string } | void> => {
+export const userLogin = async(email: string, password: string): Promise<{ client: string } | void> => {
     try {
         const response: AxiosResponse<UserData> = await api.post("users/login/", { email, password});
         if (response.status === 200) {
-            const { user, token } = response.data;
+            const { client, token } = response.data;
             localStorage.setItem("token", token);
             api.defaults.headers.common["Authorization"] = `Token ${token}`;
-            return { user, email }
+            return { client }
         } else {
             console.error('login error', response)
         }
@@ -60,7 +60,7 @@ export const userConfirmation = async(): Promise<User | null> => {
     if(token) {
         api.defaults.headers.common["Authorization"] = `Token ${token}`
         try {
-            const response: AxiosResponse<User> = await api.get("users/")
+            const response: AxiosResponse<User> = await api.get("users/info/")
             if (response.status === 200) {
                 console.log(response.data)
                 return response.data;

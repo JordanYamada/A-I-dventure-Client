@@ -5,8 +5,7 @@ import Form from "react-bootstrap/Form";
 import { userLogin } from "../utilities/utilities";
 
 interface User {
-  email: string;
-  user: string;
+  client: string;
 }
 
 const LogIn: React.FC = () => {
@@ -22,9 +21,9 @@ const LogIn: React.FC = () => {
     e.preventDefault();
     const userResponse = await userLogin(emailInput, passwordInput);
     if (userResponse && typeof userResponse === "object" && "user" in userResponse && "email" in userResponse) {
-      const user: User = userResponse;
-      setUser(user);
-      console.log(user);
+      const client: User = userResponse;
+      setUser(client);
+      console.log(client);
     } else {
       console.log("Login failed");
     }

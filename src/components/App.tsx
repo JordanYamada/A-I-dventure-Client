@@ -5,13 +5,103 @@ import Footer from './Footer';
 import { Outlet, useNavigate, useLocation, useLoaderData } from 'react-router-dom';
 import { api, User } from '../utilities/utilities';
 
+interface Progress {
+  id: number;
+  title: string;
+  image: string;
+  decision: string;
+  result: string;
+  dialogue: string | null;
+  epilogue: string | null;
+  choice_one: string | null;
+  danger_one: string | null;
+  choice_two: string | null;
+  danger_two: string | null;
+  choice_three: string | null;
+  danger_three: string | null;
+  story: number;
+}
+
+interface Story {
+  id: number;
+  progress: Progress[];
+  theme: string;
+  role: string;
+  title: string;
+  completed: boolean;
+  client: number;
+  // Other properties as needed
+}
+
+interface StoryData {
+  stories: Story[];
+  // Add other properties as needed
+}
+
 const App: React.FC = () => {
   // Get the loader data and perform type assertion to specify the expected type
   const loadedUserData = useLoaderData() as User | null;
 
+  const [storyData, setStoryData] = useState<StoryData | null>(null);
+  const [bookData, setBookData] = useState<StoryData | null>(null);
+  const [showStory, setShowStory] = useState(false);
   const [user, setUser] = useState<User | null>(loadedUserData);
   const navigate = useNavigate();
   const location = useLocation();
+
+
+  
+
+  const deleteStory = async (id:number) => {
+    try {
+      await api.delete(`stories/${id}/`);
+      setShowStory(false); 
+      alert("Adventure Forgotten!")
+    } catch (error) {
+      console.error("Error fetching unfinished stories:", error);
+    } 
+    
+
+  }
+
+  const contextObject = {
+    user,
+    setUser,
+    showStory,
+    setShowStory,
+    storyData,
+    setStoryData,
+    bookData,
+    setBookData,
+    deleteStory
+}
+
+
+  useEffect(() => {
+    getStories(false);
+    getStories(true); 
+}, [showStory]);
+
+
+const getStories = async (bool:boolean) => {
+  try {
+    const response = await api.get(`stories/completed/${bool}/`);
+    const { data } = response;
+    console.log("UseEffect - resume",data);
+    if (data) {
+      if (bool === false){
+      setStoryData(data);
+    } else {
+      setBookData(data);
+    }
+    }
+  } catch (error) {
+    console.error("Error fetching stories:", error);
+  } 
+};
+
+
+
 
   const testConnection = async () => {
     const response = await api.get('stories/');
@@ -48,7 +138,7 @@ const App: React.FC = () => {
   return (
     <>
       <Header user={user} setUser={setUser} />
-      <Outlet context={{ user, setUser }} />
+      <Outlet context={contextObject} />
       <Footer />
     </>
   );
