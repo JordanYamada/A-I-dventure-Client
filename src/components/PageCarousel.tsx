@@ -42,16 +42,11 @@ interface MemoryData {
 
 interface OutletContext {
   libraryBook: Story
-  memories: MemoryData;
-  showStory: boolean;
   setMemories: (memories:MemoryData) => void;
-  bookId: number;
-  setBookId: (bookId:number) => void; 
 }
 
 const PageCarousel: React.FC = () => {
-  const { libraryBook, setMemories, memories }: OutletContext = useOutletContext();
-  // const { stories }: { stories: Story[] } = storyData;
+  const { libraryBook, setMemories }: OutletContext = useOutletContext();
 
 
   const pages:Progress[] = libraryBook.progress
@@ -66,21 +61,19 @@ const PageCarousel: React.FC = () => {
       }
       const newPage:{
         image:string,
-        dialogue:string,
+        dialogue:string | null,
         title:string
       } = {
         image:page.image,
         dialogue:dialogue,
         title:page.title
       }
-      console.log("NEWPAGE:",newPage)
       await api.post(`memories/`, newPage );
       const response = await api.get(`memories/`)
       setMemories(response.data); 
-      console.log("Memory Saved:", memories)
       alert("Memory Saved!")
     } catch (error) {
-      console.error("Error fetching unfinished stories:", error);
+      console.error("Error: Could not save this memory...:", error);
     } 
   }
 

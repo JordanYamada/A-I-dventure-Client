@@ -14,15 +14,28 @@ const StartModal: React.FC<StartModalProps> = ({ showStart, handleShowStart, beg
 
 
   const handleBegin = () => {
-    // Handle action when "Begin" button is clicked
-    console.log('Begin button clicked');
     beginStory({ theme, role })
     handleShowStart()
   };
 
   const handleRandom = () => {
-    // Handle action when "Random" button is clicked
-    console.log('Random button clicked');
+    const randomThemeRoll = Math.floor(Math.random() * 2);
+    const randomTheme = (randomThemeRoll === 0) ? 'epic adventure' : 'space adventure';
+
+    const randomRole = randomTheme === 'epic adventure'
+      ? ['brave warrior', 'cunning rogue', 'wise wizard', 'veteran archer'][Math.floor(Math.random() * 4)]
+      : ['space fleet captain', 'researcher of alien life and planets', 'bold space pirate', 'wandering, inquisitive explorer'][Math.floor(Math.random() * 4)];
+
+    setTheme(randomTheme);
+    setRole(randomRole);
+
+    beginStory({
+      theme: randomTheme,
+      role: randomRole
+    })
+
+    handleShowStart()
+
   };
 
   return (

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import { useOutletContext } from 'react-router-dom';
-// import { api } from '../utilities/utilities';
 import StoryCarousel from './StoryCarousel';
 
 
@@ -31,7 +30,6 @@ interface Story {
   title: string;
   completed: boolean;
   client: number;
-  // Other properties as needed
 }
 
 interface StoryData {
@@ -48,13 +46,11 @@ interface ResumeModalProps {
 
 
 const ResumeModal: React.FC<ResumeModalProps> = ({ showStory, handleShowResume, resumeUnfinishedStory }) => {
-  // const [storyData, setStoryData] = useState<StoryData | null>(null);
   const { storyData }: { storyData: StoryData } = useOutletContext();
 
 
 
   const handleResume = (storyId:number | null) => {
-    console.log("handleResume:", storyId);
     const id = storyId;
     resumeUnfinishedStory(id)
     handleShowResume()
@@ -83,12 +79,6 @@ const ResumeModal: React.FC<ResumeModalProps> = ({ showStory, handleShowResume, 
         
         </Modal.Body>
         <Modal.Footer>
-        {/* <Button variant="primary" onClick={handleResume}>
-            Begin
-          </Button>
-          <Button variant="secondary" onClick={handleRandom}>
-            Random
-          </Button> */}
         </Modal.Footer>
       </Modal>
     </>

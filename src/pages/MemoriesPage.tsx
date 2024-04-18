@@ -1,10 +1,8 @@
 import React from 'react';
-// import { AxiosResponse } from 'axios';
 import { Link } from 'react-router-dom';
 import { useOutletContext } from 'react-router-dom';
 import MemoryCarousel from '../components/MemoryCarousel';
-// import ViewModal from '../components/ViewModal';
-import { api } from '../utilities/utilities';
+
 
 interface Memory {
   id: number;

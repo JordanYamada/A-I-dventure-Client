@@ -40,17 +40,15 @@ interface Story {
   title: string;
   completed: boolean;
   client: number;
-  // Other properties as needed
 }
 
 interface StoryData {
   stories: Story[];
-  // Add other properties as needed
 }
 
 interface ResumeResponse {
-  story: StoryData["stories"];
-  progress: Story["progress"];
+  story: Story[];
+  progress: Progress[];
 }
 
 
@@ -71,9 +69,7 @@ const AdventurePage: React.FC = () => {
   const [choiceOne, setChoiceOne] = useState<string>("");
   const [choiceTwo, setChoiceTwo] = useState<string>("");
   const [choiceThree, setChoiceThree] = useState<string>("");
-  // const [requestParams, setRequestParams] = useState<FormData>({ method: '', description: '', title: '' });
   const [showStart, setShowStart] = useState(false);
-  // const [showResume, setShowResume] = useState(false);
   const { showStory, setShowStory, setStoryData }: OutletContext = useOutletContext()
 
 
@@ -84,9 +80,7 @@ const AdventurePage: React.FC = () => {
 
 
   useEffect(() => {
-    // if (showResume === false) {
     getUnfinishedStories();
-  // }
   }, [showStory]);
 
 
@@ -95,7 +89,6 @@ const AdventurePage: React.FC = () => {
       try {
         const response = await api.get('stories/completed/false/');
         const { data } = response;
-        console.log("UseEffect - resume", data);
         if (data) {
           setStoryData(data);
         }
@@ -213,13 +206,11 @@ const AdventurePage: React.FC = () => {
               showStory={showStory}
               handleShowResume={handleShowResume}
               resumeUnfinishedStory={resumeUnfinishedStory}
-            // storyData={storyData}
             />
           </>}
       </div>
 
 
-      {/* <Footer /> */}
     </React.Fragment>
   );
 }
