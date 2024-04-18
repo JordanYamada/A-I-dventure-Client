@@ -38,19 +38,29 @@ interface StoryData {
   // Add other properties as needed
 }
 
+interface Memory {
+  image: string;
+  dialogue: string;
+  title: string;
+}
+
+interface MemoryData {
+  memoryData: Memory[];
+}
+
 const App: React.FC = () => {
   // Get the loader data and perform type assertion to specify the expected type
   const loadedUserData = useLoaderData() as User | null;
-
+  const [memories,setMemories] = useState<MemoryData | null>(null)
   const [storyData, setStoryData] = useState<StoryData | null>(null);
   const [bookData, setBookData] = useState<StoryData | null>(null);
-  const [showStory, setShowStory] = useState(false);
+  const [libraryBook, setLibraryBook] = useState<Story | null>(null)
+  const [showStory, setShowStory] = useState<boolean>(false);
+  const [bookId, setBookId] = useState<number | null>(0)
   const [user, setUser] = useState<User | null>(loadedUserData);
   const navigate = useNavigate();
   const location = useLocation();
 
-
-  
 
   const deleteStory = async (id:number) => {
     try {
@@ -73,6 +83,12 @@ const App: React.FC = () => {
     setStoryData,
     bookData,
     setBookData,
+    bookId,
+    setBookId,
+    libraryBook,
+    setLibraryBook,
+    memories,
+    setMemories,
     deleteStory
 }
 
@@ -80,7 +96,14 @@ const App: React.FC = () => {
   useEffect(() => {
     getStories(false);
     getStories(true); 
+    getMemories();
 }, [showStory]);
+
+
+useEffect(() => { 
+  getMemories();
+}, []);
+
 
 
 const getStories = async (bool:boolean) => {
@@ -100,7 +123,14 @@ const getStories = async (bool:boolean) => {
   } 
 };
 
-
+const getMemories = async () => {
+  try {
+  const response = await api.get(`memories/`)
+  setMemories(response.data); 
+} catch (error) {
+  console.error("Error fetching stories:", error);
+} 
+} 
 
 
   const testConnection = async () => {
@@ -137,9 +167,13 @@ const getStories = async (bool:boolean) => {
 
   return (
     <>
+    <div className='PageContainer'>
       <Header user={user} setUser={setUser} />
+      <div className='OutletWrapper'>
       <Outlet context={contextObject} />
+      </div>
       <Footer />
+      </div>
     </>
   );
 }

@@ -27,7 +27,6 @@ interface Story {
   title: string;
   completed: boolean;
   client: number;
-  // Other properties as needed
 }
 
 interface StoryData {
@@ -47,7 +46,7 @@ const StoryCarousel: React.FC<StoryCarouselProps> = ({ storyData, handleFirstBut
 
 
   const storyCollection = stories.map( story => (
-    <Carousel.Item key={story.id}>
+    <Carousel.Item className="Carousels" key={story.id}>
       <img
         className="carouselImage h-10rem d-block img-fluid"
         src={story.progress.length > 0 ? story.progress[0].image : ""}
@@ -59,7 +58,7 @@ const StoryCarousel: React.FC<StoryCarouselProps> = ({ storyData, handleFirstBut
         {/* You can uncomment this line when you have a description in your data */}
         {/* <p>{story.description}</p> */}
       </Carousel.Caption>
-      <div>{story.completed? 
+      <div className="StoryCarousel">{story.completed? 
       <Button onClick={() => handleFirstButton(story.id)}>View</Button>
       :
       <Button onClick={() => handleFirstButton(story.id)}>Continue</Button>
@@ -78,7 +77,7 @@ const StoryCarousel: React.FC<StoryCarouselProps> = ({ storyData, handleFirstBut
       {stories && stories.length > 0
         ?
         (
-          <Carousel>{storyCollection}</Carousel>
+          <Carousel className="Carousels">{storyCollection}</Carousel>
         )
         :
         (

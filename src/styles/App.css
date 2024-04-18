@@ -5,38 +5,44 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+html, body, #root {
+  height: 100%;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+
+
+.Carousels {
+  display:flexbox;
+  justify-content: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.Carousels button {
+  display:block;
+  margin: auto;
 }
 
-.card {
-  padding: 2em;
+footer {
+  margin-top: auto; /* Push footer to the bottom */
 }
 
-.read-the-docs {
-  color: #888;
+.PageContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.OutletWrapper{
+  flex:1;
+}
+
+.StoryCarousel {
+  display: flexbox;
+  justify-content: space-around;
+}
+
+.StoryCarousel button {
+  margin-top: 50px;
+  display: inline-block;
+  margin: auto;
 }

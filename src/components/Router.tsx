@@ -4,9 +4,9 @@ import HomePage from '../pages/HomePage';
 import LibraryPage from '../pages/LibraryPage';
 import LogIn from '../pages/Login';
 import SignUp from '../pages/SignUp';
-AdventurePage
 import { userConfirmation } from '../utilities/utilities';
 import AdventurePage from '../pages/AdventurePage';
+import MemoriesPage from '../pages/MemoriesPage';
 
 const routes: RouteObject[] = [
   {
@@ -33,6 +33,10 @@ const routes: RouteObject[] = [
       {
         path: '/library/',
         element: <LibraryPage />,
+      },
+      {
+        path: '/memories/',
+        element: <MemoriesPage />,
       },
     ],
   },
