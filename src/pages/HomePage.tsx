@@ -19,7 +19,7 @@ const HomePage: React.FC = () => {
       <h1>Welcome</h1>
       {user
         ?
-        <>
+        <div className='DivContainer'>
           <br />
           <div>
             Embark on an...
@@ -35,12 +35,13 @@ const HomePage: React.FC = () => {
             Delve through your...
             <Link to="/memories/">Memories</Link>
           </div>
-        </>
+        </div>
         :
-        <>
+        <div className='DivContainer'>
           <br />
-          <h2>Please <Link to="/signup/">Sign Up</Link> or <Link to="/login/">Log In</Link> to Continue</h2>
-        </>
+          {/* <img src="https://dalle-image-storage.s3.amazonaws.com/1713398870151.jpeg" alt="A(I)venture Logo"/> */}
+          <h2><Link to="/signup/">Sign Up</Link> or <Link to="/login/">Log In</Link></h2>
+        </div>
       }
     </>
   )

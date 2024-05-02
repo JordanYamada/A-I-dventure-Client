@@ -20,7 +20,7 @@ const Header: React.FC<HeaderProps> = ({ user, setUser }) => {
   };
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="lg" className="bg-body-tertiary DivContainer">
       <Container>
         <Navbar.Brand as={Link} to="/">
           Home {user ? user.client : ''}
@@ -45,6 +45,7 @@ const Header: React.FC<HeaderProps> = ({ user, setUser }) => {
         </Navbar.Collapse>
       </Container>
     </Navbar>
+ 
   );
 };
 

@@ -29,7 +29,7 @@ const MemoriesPage: React.FC = () => {
 
 
   return (
-    <>
+    <div className="DivContainer">
     {memories ?
     <>
       <h1>View your collection of favorite memories</h1>
@@ -43,7 +43,7 @@ const MemoriesPage: React.FC = () => {
   <p>How about browing through your</p><Link to="/library/">Library?</Link></div>
   </>
     }
-    </>
+    </div>
   )
 }
 

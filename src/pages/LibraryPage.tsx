@@ -93,7 +93,7 @@ const LibraryPage: React.FC = () => {
   }
 
   return (
-    <>
+    <div className="DivContainer">
       <h1>Welcome to the Library</h1>
       {bookData ? <>
         <StoryCarousel
@@ -111,7 +111,7 @@ const LibraryPage: React.FC = () => {
   <p>How about starting a new</p><Link to="/adventure/">Adventure?</Link></div>
   </>
     }
-    </>
+    </div>
   )
 }
 

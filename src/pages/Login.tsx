@@ -30,7 +30,7 @@ const LogIn: React.FC = () => {
   };
 
   return (
-    <>
+    <div className="DivContainer">
       <h2>Login</h2>
       <Form onSubmit={handleLogin}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -61,7 +61,7 @@ const LogIn: React.FC = () => {
           Submit
         </Button>
       </Form>
-    </>
+    </div>
   );
 };
 

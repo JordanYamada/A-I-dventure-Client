@@ -174,7 +174,7 @@ const AdventurePage: React.FC = () => {
 
 
   return (
-    <React.Fragment>
+    <div className="DivContainer">
 
       {image
         ?
@@ -211,7 +211,7 @@ const AdventurePage: React.FC = () => {
       </div>
 
 
-    </React.Fragment>
+    </div>
   );
 }
 

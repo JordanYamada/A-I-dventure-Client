@@ -169,6 +169,8 @@ const getMemories = async () => {
     <>
     <div className='PageContainer'>
       <Header user={user} setUser={setUser} />
+      <br/>
+      <br/>
       <div className='OutletWrapper'>
       <Outlet context={contextObject} />
       </div>
