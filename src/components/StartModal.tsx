@@ -40,15 +40,15 @@ const StartModal: React.FC<StartModalProps> = ({ showStart, handleShowStart, beg
 
   return (
     <>
-      <Button variant="primary" onClick={handleShowStart}>
+      <Button variant="secondary outline-secondary" onClick={handleShowStart}>
         Begin a new story
       </Button>
 
-      <Modal show={showStart} onHide={handleShowStart}>
-        <Modal.Header closeButton>
+      <Modal className='hidden' show={showStart} onHide={handleShowStart}>
+        <Modal.Header className='DivContainer' closeButton>
           <Modal.Title>Begin Your Story</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className='DivContainer'>
           <div className="mb-3">
             <label htmlFor="themeSelect" className="form-label">Select Theme:</label>
             <select className="form-select" id="themeSelect" required value={theme} onChange={(e) => setTheme(e.target.value)}>
@@ -78,10 +78,10 @@ const StartModal: React.FC<StartModalProps> = ({ showStart, handleShowStart, beg
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleRandom}>
+          <Button variant="secondary outline-secondary" onClick={handleRandom}>
             Random
           </Button>
-          <Button variant="primary" onClick={handleBegin}>
+          <Button variant="secondary outline-secondary" onClick={handleBegin}>
             Begin
           </Button>
         </Modal.Footer>

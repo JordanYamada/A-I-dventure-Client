@@ -20,7 +20,7 @@ const Header: React.FC<HeaderProps> = ({ user, setUser }) => {
   };
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary DivContainer">
+    <Navbar expand="lg" className="DivContainer">
       <Container>
         <Navbar.Brand as={Link} to="/">
           Home {user ? user.client : ''}
@@ -37,7 +37,7 @@ const Header: React.FC<HeaderProps> = ({ user, setUser }) => {
               </Nav.Link>
             )}
             {user && (
-              <Button onClick={() => handleUserLogout()} variant="outline-danger">
+              <Button onClick={() => handleUserLogout()} variant="secondary outline-secondary">
                 Log Out
               </Button>
             )}

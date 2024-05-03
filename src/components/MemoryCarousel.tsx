@@ -49,7 +49,7 @@ const MemoryCarousel: React.FC = () => {
       />
       </div>
       <div className="Carousels">
-      <Button onClick={() =>forgetMemory(memory.id)}>Forget</Button>
+      <Button className='CarouselButton' variant="secondary outline-secondary" onClick={() =>forgetMemory(memory.id)}>Forget</Button>
       </div>
       
     </Carousel.Item>

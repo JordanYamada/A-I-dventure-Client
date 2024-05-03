@@ -59,15 +59,15 @@ const ResumeModal: React.FC<ResumeModalProps> = ({ showStory, handleShowResume, 
 
   return (
     <>
-      <Button variant="primary" onClick={handleShowResume}>
+      <Button variant="secondary outline-secondary" onClick={handleShowResume}>
         Resume a story
       </Button>
 
-      <Modal show={showStory} onHide={handleShowResume}>
-        <Modal.Header closeButton>
+      <Modal className='hidden' show={showStory} onHide={handleShowResume}>
+        <Modal.Header className='DivContainer' closeButton>
           <Modal.Title>Choose Your Story</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className='DivContainer'>
           <div className="mb-3">
 
             <StoryCarousel

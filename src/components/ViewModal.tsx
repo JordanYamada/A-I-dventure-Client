@@ -23,11 +23,11 @@ const ViewModal: React.FC<ViewModalProps> = ({ showStory, handleShowModal}) => {
     <>
       
 
-      <Modal show={showStory} onHide={handleShowModal}>
-        <Modal.Header closeButton>
+      <Modal className='hidden' show={showStory} onHide={handleShowModal}>
+        <Modal.Header className='DivContainer' closeButton>
           <Modal.Title>Choose Your Story</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className='DivContainer'>
           <div className="mb-3">
 
             <PageCarousel />

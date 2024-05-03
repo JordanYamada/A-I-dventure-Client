@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { AxiosResponse } from 'axios';
@@ -48,7 +49,7 @@ interface StoryData {
 
 interface ResumeResponse {
   story: Story[];
-  progress: Progress[];
+  progress: Progress[] | Progress;
 }
 
 
@@ -78,24 +79,23 @@ const AdventurePage: React.FC = () => {
   const handleShowResume = () => setShowStory(!showStory);
 
 
-
   useEffect(() => {
     getUnfinishedStories();
   }, [showStory]);
 
 
   const getUnfinishedStories = async () => {
-    
-      try {
-        const response = await api.get('stories/completed/false/');
-        const { data } = response;
-        if (data) {
-          setStoryData(data);
-        }
-      } catch (error) {
-        console.error("Error fetching unfinished stories:", error);
+
+    try {
+      const response = await api.get('stories/completed/false/');
+      const { data } = response;
+      if (data) {
+        setStoryData(data);
       }
-  
+    } catch (error) {
+      console.error("Error fetching unfinished stories:", error);
+    }
+
   };
 
 
@@ -152,7 +152,8 @@ const AdventurePage: React.FC = () => {
     try {
       const response: AxiosResponse<ResumeResponse> = await api.get<ResumeResponse>(`stories/${id}/`);
       const { story, progress } = response.data;
-      const lastProgress = progress[progress.length - 1];
+      const lastProgressArray = progress as Progress[];
+      const lastProgress = lastProgressArray[lastProgressArray.length - 1];
 
       const responseData: AxiosResponse<ResumeResponse> = {
         data: {
@@ -181,19 +182,32 @@ const AdventurePage: React.FC = () => {
         <h2>Title: {title}</h2>
         :
         <h2>Let's Start An Adventure</h2>}
-      {image
-        ?
-        <div>{dialogue || epilogue}</div>
-        :
-        null}
+
       <div>
-        {image ? <img src={image} /> : <h2>Try It Out!</h2>}
+        {image
+          ?
+          <div>
+            <div>
+            <img className='CarouselImage' src={image} />
+            </div>
+
+            {dialogue || epilogue}
+          </div>
+          :
+          <h2>Try It Out!</h2>
+        }
         {image && epilogue === ""
           ?
           <>
-            <Button onClick={() => continueStory(choiceOne)}>{choiceOne}</Button>
-            <Button onClick={() => continueStory(choiceTwo)}>{choiceTwo}</Button>
-            <Button onClick={() => continueStory(choiceThree)}>{choiceThree}</Button>
+          <div>
+            <Button className='CarouselButton2' variant="secondary outline-secondary" onClick={() => continueStory(choiceOne)}>{choiceOne}</Button>
+            </div>
+            <div>
+            <Button className='CarouselButton2' variant="secondary outline-secondary" onClick={() => continueStory(choiceTwo)}>{choiceTwo}</Button>
+            </div>
+            <div>
+            <Button className='CarouselButton2' variant="secondary outline-secondary" onClick={() => continueStory(choiceThree)}>{choiceThree}</Button>
+            </div>
           </>
           :
           <>

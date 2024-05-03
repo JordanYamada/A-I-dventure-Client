@@ -63,11 +63,11 @@ const StoryCarousel: React.FC<StoryCarouselProps> = ({ storyData, handleFirstBut
         {/* <p>{story.description}</p> */}
       </Carousel.Caption>
       <div className="StoryCarousel">{story.completed? 
-      <Button onClick={() => handleFirstButton(story.id)}>View</Button>
+      <Button className='CarouselButton' variant="secondary outline-secondary" onClick={() => handleFirstButton(story.id)}>View</Button>
       :
-      <Button onClick={() => handleFirstButton(story.id)}>Continue</Button>
+      <Button className='CarouselButton' variant="secondary outline-secondary" onClick={() => handleFirstButton(story.id)}>Continue</Button>
 }
-      <Button onClick={() => deleteStory(story.id)}>Delete</Button>
+      <Button className='CarouselButton' variant="secondary outline-secondary" onClick={() => deleteStory(story.id)}>Delete</Button>
       </div>
     </Carousel.Item>
   ));

@@ -57,7 +57,7 @@ const LogIn: React.FC = () => {
             placeholder="Password"
           />
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button variant="secondary outline-secondary" type="submit">
           Submit
         </Button>
       </Form>

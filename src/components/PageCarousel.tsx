@@ -96,7 +96,7 @@ const PageCarousel: React.FC = () => {
         
       </div>
       <div className="Carousels">
-      <Button onClick={() =>saveMemory(page)}>Save</Button>
+      <Button className='CarouselButton' variant="secondary outline-secondary" onClick={() =>saveMemory(page)}>Save</Button>
       </div>
       
     </Carousel.Item>
