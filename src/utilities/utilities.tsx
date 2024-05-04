@@ -15,7 +15,7 @@ export interface User {
 
 // Create an instance of axios
 export const api = axios.create({
-    baseURL: "http://127.0.0.1:8000/api/v1/",
+    baseURL: `${import.meta.env.REACT_APP_SERVER}/api/v1/`,
 })
 
 // Define the type of the parameters and return value for userLogin function
