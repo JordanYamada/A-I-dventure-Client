@@ -21,12 +21,12 @@ const Header: React.FC<HeaderProps> = ({ user, setUser }) => {
 
   return (
     <Navbar expand="lg" className="DivContainer">
-      <Container>
+      <Container className='HeaderContainer'>
         <Navbar.Brand as={Link} to="/">
-          Home {user ? user.client : ''}
+          {user ? `User: ${user.client}` : "Home"}
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
+        <Navbar.Collapse className='HeaderContainer' id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/signup/">
               Sign Up

@@ -16,7 +16,7 @@ const HomePage: React.FC = () => {
 
   return (
     <>
-      <h1>Welcome</h1>
+      <h1 className='BackgroundText'>Welcome</h1>
       {user
         ?
         <div className='DivContainer'>

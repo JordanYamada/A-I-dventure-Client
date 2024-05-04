@@ -9,6 +9,11 @@ html, body, #root {
   height: 100%;
 }
 
+.BackgroundText {
+  color: aliceblue;
+  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5); /* 1px horizontal offset, 1px vertical offset, 2px blur radius, shadow color with opacity */
+}
+
 body {
   background-image: url("https://dalle-image-storage.s3.amazonaws.com/1713398870151.jpeg");
   background-size: cover; /* Cover the entire background area */
@@ -61,6 +66,8 @@ body {
   border-width:5px;
   border-color: rgb(214, 176, 129);
   border: solid;
+  display:flexbox;
+  justify-content: space-between;
 }
 
 footer {
@@ -75,6 +82,21 @@ footer {
   border-color: rgb(214, 176, 129);
   border: solid;
 
+}
+
+.FormBody {
+  display: inline-block;
+  justify-self: center;
+}
+
+.FormInput {
+  width: 300px;
+}
+
+.HeaderContainer {
+  display: flex;
+  margin: auto;
+  justify-content: space-around;
 }
 
 .hidden {

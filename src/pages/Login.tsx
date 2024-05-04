@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { userLogin } from "../utilities/utilities";
@@ -12,6 +12,7 @@ const LogIn: React.FC = () => {
   const [emailInput, setEmailInput] = useState<string>("");
   const [passwordInput, setPasswordInput] = useState<string>("");
   const context = useOutletContext(); // Infer type
+  const navigate = useNavigate();
 
   // Suppress eslint error for the next line
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -20,20 +21,20 @@ const LogIn: React.FC = () => {
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const userResponse = await userLogin(emailInput, passwordInput);
-    if (userResponse && typeof userResponse === "object" && "user" in userResponse && "email" in userResponse) {
+    if (userResponse && typeof(userResponse) === "object" && "client" in userResponse) {
       const client: User = userResponse;
       setUser(client);
-      console.log(client);
+      navigate("/");
     } else {
-      console.log("Login failed");
+      alert("Login failed");
     }
   };
 
   return (
     <div className="DivContainer">
       <h2>Login</h2>
-      <Form onSubmit={handleLogin}>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Form className="FormBody" onSubmit={handleLogin}>
+        <Form.Group className="mb-3 FormInput" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -41,13 +42,14 @@ const LogIn: React.FC = () => {
             }
             type="email"
             placeholder="Enter email"
+            required
           />
           <Form.Text className="text-muted">
             We'll never share your email with anyone else.
           </Form.Text>
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Group className="mb-3 FormInput" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -55,6 +57,7 @@ const LogIn: React.FC = () => {
             }
             type="password"
             placeholder="Password"
+            required
           />
         </Form.Group>
         <Button variant="secondary outline-secondary" type="submit">
