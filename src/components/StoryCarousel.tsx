@@ -35,11 +35,11 @@ interface StoryData {
 
 interface StoryCarouselProps {
   storyData: StoryData;
-  handleFirstButton: (id:number | null) => void;
+  handleFirstButton: (id: number | null) => void;
 }
 
 interface OutletContext {
-  deleteStory: (id:number) => void
+  deleteStory: (id: number) => void
 }
 
 const StoryCarousel: React.FC<StoryCarouselProps> = ({ storyData, handleFirstButton }) => {
@@ -49,7 +49,7 @@ const StoryCarousel: React.FC<StoryCarouselProps> = ({ storyData, handleFirstBut
 
 
 
-  const storyCollection = stories.map( story => (
+  const storyCollection = stories.map(story => (
     <Carousel.Item className="Carousels" key={story.id}>
       <img
         className="carouselImage h-10rem d-block img-fluid"
@@ -59,15 +59,15 @@ const StoryCarousel: React.FC<StoryCarouselProps> = ({ storyData, handleFirstBut
 
       <Carousel.Caption className="carouselCaption">
         <h3>{story.title}</h3>
-        {/* You can uncomment this line when you have a description in your data */}
-        {/* <p>{story.description}</p> */}
+
       </Carousel.Caption>
-      <div className="StoryCarousel">{story.completed? 
-      <Button className='CarouselButton' variant="secondary outline-secondary" onClick={() => handleFirstButton(story.id)}>View</Button>
-      :
-      <Button className='CarouselButton' variant="secondary outline-secondary" onClick={() => handleFirstButton(story.id)}>Continue</Button>
-}
-      <Button className='CarouselButton' variant="secondary outline-secondary" onClick={() => deleteStory(story.id)}>Delete</Button>
+      <div className="StoryCarousel">
+        {story.completed ?
+        <Button className='CarouselButton' variant="secondary outline-secondary" onClick={() => handleFirstButton(story.id)}>View</Button>
+        :
+        <Button className='CarouselButton' variant="secondary outline-secondary" onClick={() => handleFirstButton(story.id)}>Continue</Button>
+      }
+        <Button className='CarouselButton' variant="secondary outline-secondary" onClick={() => deleteStory(story.id)}>Delete</Button>
       </div>
     </Carousel.Item>
   ));

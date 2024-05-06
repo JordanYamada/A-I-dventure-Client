@@ -62,6 +62,12 @@ const App: React.FC = () => {
   const location = useLocation();
 
 
+
+  const backToHome = () => {
+    navigate("/")
+  }
+
+
   const deleteStory = async (id:number) => {
     try {
       await api.delete(`stories/${id}/`);
@@ -89,7 +95,8 @@ const App: React.FC = () => {
     setLibraryBook,
     memories,
     setMemories,
-    deleteStory
+    deleteStory,
+    backToHome
 }
 
 
@@ -97,12 +104,12 @@ const App: React.FC = () => {
     getStories(false);
     getStories(true); 
     getMemories();
-}, [showStory]);
+}, [showStory, user]);
 
 
 useEffect(() => { 
   getMemories();
-}, []);
+}, [user]);
 
 
 
@@ -110,7 +117,6 @@ const getStories = async (bool:boolean) => {
   try {
     const response = await api.get(`stories/completed/${bool}/`);
     const { data } = response;
-    console.log("UseEffect - resume",data);
     if (data) {
       if (bool === false){
       setStoryData(data);
@@ -153,7 +159,7 @@ const getMemories = async () => {
     // logged user tries to go to signup, etc
     if (user && isAllowed) {
       console.log('redirect to homepage');
-      navigate('/');
+      backToHome()
     }
 
     // not logged in user tries to go anywhere BUT signup or login

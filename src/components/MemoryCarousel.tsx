@@ -19,10 +19,11 @@ interface MemoryData {
 interface OutletContext {
   memories: MemoryData
   setMemories: (memories:MemoryData) => void;
+  backToHome: () => void;
 }
 
 const MemoryCarousel: React.FC = () => {
-  const { memories, setMemories }: OutletContext = useOutletContext();
+  const { memories, setMemories, backToHome }: OutletContext = useOutletContext();
 
   const { memoryData }: { memoryData: Memory[] } = memories;
  
@@ -48,8 +49,9 @@ const MemoryCarousel: React.FC = () => {
         alt={memory.title}
       />
       </div>
-      <div className="Carousels">
+      <div className="StoryCarousel">
       <Button className='CarouselButton' variant="secondary outline-secondary" onClick={() =>forgetMemory(memory.id)}>Forget</Button>
+      <Button className='CarouselButton' variant="secondary outline-secondary" onClick={() =>backToHome()}>Back</Button>
       </div>
       
     </Carousel.Item>

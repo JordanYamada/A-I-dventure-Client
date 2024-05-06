@@ -95,7 +95,7 @@ const LibraryPage: React.FC = () => {
   return (
     <div className="DivContainer">
       <h1>Welcome to the Library</h1>
-      {bookData ? <>
+      {bookData && bookData.stories.length ? <>
         <StoryCarousel
             handleFirstButton={handleShowView}
             storyData={bookData}            
@@ -106,7 +106,9 @@ const LibraryPage: React.FC = () => {
          />
       </>:
       <>
+      <br/>
       <h2>Looks like you haven't finished any adventures yet.</h2>
+      <br/>
 <div>
   <p>How about starting a new</p><Link to="/adventure/">Adventure?</Link></div>
   </>

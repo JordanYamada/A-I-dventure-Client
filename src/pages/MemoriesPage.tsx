@@ -27,10 +27,9 @@ const MemoriesPage: React.FC = () => {
 
 
 
-
   return (
     <div className="DivContainer">
-    {memories ?
+    {memories && memories.memoryData.length ?
     <>
       <h1>View your collection of favorite memories</h1>
       

@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 
+
 // Define the shape of the response data
 interface UserData {
     client: string;
@@ -13,9 +14,10 @@ export interface User {
 }
 
 
+
 // Create an instance of axios
 export const api = axios.create({
-    baseURL: `${import.meta.env.REACT_APP_SERVER}/api/v1/`,
+    baseURL: `${import.meta.env.VITE_REACT_APP_SERVER}/api/v1/`,
 })
 
 // Define the type of the parameters and return value for userLogin function
