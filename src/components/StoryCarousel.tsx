@@ -39,7 +39,7 @@ interface StoryCarouselProps {
 }
 
 interface OutletContext {
-  deleteStory: (id: number) => void
+  deleteStory: (id: number) => void;
 }
 
 const StoryCarousel: React.FC<StoryCarouselProps> = ({ storyData, handleFirstButton }) => {

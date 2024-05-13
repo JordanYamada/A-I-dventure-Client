@@ -5,10 +5,7 @@ import { AxiosResponse } from 'axios';
 import { api } from '../utilities/utilities.tsx';
 import StartModal from '../components/StartModal.tsx';
 import ResumeModal from '../components/ResumeModal.tsx';
-// import SaveButton from '../components/SaveButton.tsx';
-import { Button } from 'react-bootstrap';
-
-// import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Button, Spinner } from 'react-bootstrap';
 
 
 interface FormData {
@@ -54,6 +51,8 @@ interface ResumeResponse {
 
 
 interface OutletContext {
+  clicked: boolean;
+  setClicked: (clicked: boolean) => void;
   showStory: boolean;
   setShowStory: (showStory: boolean) => void;
   setStoryData: (data: StoryData) => void;
@@ -71,7 +70,7 @@ const AdventurePage: React.FC = () => {
   const [choiceTwo, setChoiceTwo] = useState<string>("");
   const [choiceThree, setChoiceThree] = useState<string>("");
   const [showStart, setShowStart] = useState(false);
-  const { showStory, setShowStory, setStoryData }: OutletContext = useOutletContext()
+  const { clicked, setClicked, showStory, setShowStory, setStoryData }: OutletContext = useOutletContext()
 
 
 
@@ -139,10 +138,12 @@ const AdventurePage: React.FC = () => {
 
   const continueStory = async (choice: string) => {
     try {
+      setClicked(true);
       const response: AxiosResponse = await api.post(`stories/${id}/`, {
         choice
       })
       handleResponse(response);
+      setClicked(false);
     } catch (error) {
       console.log("Error:", error);
     }
@@ -196,7 +197,43 @@ const AdventurePage: React.FC = () => {
           :
           <h2>Try It Out!</h2>
         }
-        {image && epilogue === ""
+        {clicked
+        ?
+        <>
+        <Button className='CarouselButton2' variant="secondary" disabled>
+        <Spinner
+          as="span"
+          animation="grow"
+          size="sm"
+          role="status"
+          aria-hidden="true"
+        />
+        Loading...
+      </Button>
+      <Button className='CarouselButton2' variant="secondary" disabled>
+        <Spinner
+          as="span"
+          animation="grow"
+          size="sm"
+          role="status"
+          aria-hidden="true"
+        />
+        Loading...
+      </Button>
+      <Button className='CarouselButton2' variant="secondary" disabled>
+        <Spinner
+          as="span"
+          animation="grow"
+          size="sm"
+          role="status"
+          aria-hidden="true"
+        />
+        Loading...
+      </Button>
+        </>
+      :
+      <>
+      {image && epilogue === ""
           ?
           <>
           <div>
@@ -222,6 +259,9 @@ const AdventurePage: React.FC = () => {
               resumeUnfinishedStory={resumeUnfinishedStory}
             />
           </>}
+      </>
+      }
+        
       </div>
 
 
