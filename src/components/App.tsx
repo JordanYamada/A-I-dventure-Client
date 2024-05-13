@@ -51,13 +51,14 @@ interface MemoryData {
 const App: React.FC = () => {
   // Get the loader data and perform type assertion to specify the expected type
   const loadedUserData = useLoaderData() as User | null;
-  const [memories,setMemories] = useState<MemoryData | null>(null)
+  const [memories,setMemories] = useState<MemoryData | null>(null);
   const [storyData, setStoryData] = useState<StoryData | null>(null);
   const [bookData, setBookData] = useState<StoryData | null>(null);
-  const [libraryBook, setLibraryBook] = useState<Story | null>(null)
+  const [libraryBook, setLibraryBook] = useState<Story | null>(null);
   const [showStory, setShowStory] = useState<boolean>(false);
   const [bookId, setBookId] = useState<number | null>(0)
   const [user, setUser] = useState<User | null>(loadedUserData);
+  const [clicked,setClicked] = useState<boolean>(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -81,22 +82,24 @@ const App: React.FC = () => {
   }
 
   const contextObject = {
-    user,
-    setUser,
-    showStory,
-    setShowStory,
-    storyData,
-    setStoryData,
     bookData,
     setBookData,
     bookId,
     setBookId,
+    clicked,
+    setClicked,
     libraryBook,
     setLibraryBook,
     memories,
     setMemories,
+    storyData,
+    setStoryData,
+    showStory,
+    setShowStory,
+    user,
+    setUser,
+    backToHome,
     deleteStory,
-    backToHome
 }
 
 
