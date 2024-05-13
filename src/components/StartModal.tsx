@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { Button, Modal } from 'react-bootstrap';
+import { Button, Modal, Spinner } from 'react-bootstrap';
 
 interface StartModalProps {
+  clicked: boolean;
   showStart: boolean;
   handleShowStart: () => void;
   beginStory: (formData: { theme: string; role: string }) => void;
 }
 
-const StartModal: React.FC<StartModalProps> = ({ showStart, handleShowStart, beginStory }) => {
+const StartModal: React.FC<StartModalProps> = ({ clicked, showStart, handleShowStart, beginStory }) => {
   const [theme, setTheme] = useState('epic adventure');
   const [role, setRole] = useState('warrior');
 
@@ -78,12 +79,41 @@ const StartModal: React.FC<StartModalProps> = ({ showStart, handleShowStart, beg
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary outline-secondary" onClick={handleRandom}>
+          {clicked
+          ?
+        <>
+        <Button className='CarouselButton' variant="secondary" disabled>
+        <Spinner
+          as="span"
+          animation="grow"
+          size="sm"
+          role="status"
+          aria-hidden="true"
+        />
+        Loading...
+      </Button>
+      <Button className='CarouselButton' variant="secondary" disabled>
+        <Spinner
+          as="span"
+          animation="grow"
+          size="sm"
+          role="status"
+          aria-hidden="true"
+        />
+        Loading...
+      </Button>
+        </>
+        :
+        <>
+        <Button className='CarouselButton' variant="secondary outline-secondary" onClick={handleRandom}>
             Random
           </Button>
-          <Button variant="secondary outline-secondary" onClick={handleBegin}>
+          <Button className='CarouselButton' variant="secondary outline-secondary" onClick={handleBegin}>
             Begin
           </Button>
+        </>
+        }
+          
         </Modal.Footer>
       </Modal>
     </>

@@ -80,7 +80,7 @@ const AdventurePage: React.FC = () => {
 
   useEffect(() => {
     getUnfinishedStories();
-  }, [showStory]);
+  }, [dialogue,showStory]);
 
 
   const getUnfinishedStories = async () => {
@@ -114,7 +114,7 @@ const AdventurePage: React.FC = () => {
       setChoiceOne(choiceOne);
       setChoiceTwo(choiceTwo);
       setChoiceThree(choiceThree);
-      console.log("choices", choiceOne, "choice2:", choiceTwo, "choice3", choiceThree, "dialogue", dialogue)
+      // console.log("choices", choiceOne, "choice2:", choiceTwo, "choice3", choiceThree, "dialogue", dialogue)
     }
     console.log("id:", id, "title:", title, "image:", image)
     console.log('Response: ', responseData.data)
@@ -125,13 +125,16 @@ const AdventurePage: React.FC = () => {
 
   const beginStory = async (formData: FormData) => {
     try {
+      setClicked(true);
       const { theme, role } = formData;
       const response: AxiosResponse = await api.post("stories/", {
         theme,
         role
       })
       handleResponse(response);
+      setClicked(false);
     } catch (error) {
+      alert("Couldn't start an adventure this time. Try again?")
       console.log("Error:", error);
     }
   }
@@ -145,6 +148,7 @@ const AdventurePage: React.FC = () => {
       handleResponse(response);
       setClicked(false);
     } catch (error) {
+      alert("Couldn't make an image this time. Try again?")
       console.log("Error:", error);
     }
   }
@@ -192,7 +196,7 @@ const AdventurePage: React.FC = () => {
             <img className='CarouselImage' src={image} />
             </div>
 
-            {dialogue || epilogue}
+            {epilogue || dialogue}
           </div>
           :
           <h2>Try It Out!</h2>
@@ -249,6 +253,7 @@ const AdventurePage: React.FC = () => {
           :
           <>
             <StartModal
+              clicked={clicked}
               showStart={showStart}
               handleShowStart={handleShowStart}
               beginStory={beginStory}
