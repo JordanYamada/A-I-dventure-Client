@@ -35,8 +35,6 @@ const ViewModal: React.FC<ViewModalProps> = ({ showStory, handleShowModal}) => {
           </div>
         
         </Modal.Body>
-        <Modal.Footer>
-        </Modal.Footer>
       </Modal>
     </>
   );

@@ -112,8 +112,6 @@ const StartModal: React.FC<StartModalProps> = ({ clicked, showStart, handleShowS
         </>
         }
         </Modal.Body>
-        <Modal.Footer>
-        </Modal.Footer>
       </Modal>
     </>
   );

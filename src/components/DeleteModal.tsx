@@ -43,8 +43,6 @@ const DeleteModal: React.FC<DeleteModalProps> = ({ showDelete, setShowDelete, st
             Forget
           </Button>
         </Modal.Body>
-        <Modal.Footer>
-        </Modal.Footer>
       </Modal>
     </>
   );

@@ -78,8 +78,6 @@ const ResumeModal: React.FC<ResumeModalProps> = ({ showStory, handleShowResume, 
           </div>
         
         </Modal.Body>
-        <Modal.Footer>
-        </Modal.Footer>
       </Modal>
     </>
   );
