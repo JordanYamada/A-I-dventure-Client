@@ -1,6 +1,6 @@
-import React from "react";
-import { useOutletContext } from "react-router-dom";
+import React, { useState } from "react";
 import { Button, Carousel } from "react-bootstrap";
+import DeleteModal from "./DeleteModal";
 
 interface Progress {
   id: number;
@@ -38,13 +38,18 @@ interface StoryCarouselProps {
   handleFirstButton: (id: number | null) => void;
 }
 
-interface OutletContext {
-  deleteStory: (id: number) => void;
-}
+
 
 const StoryCarousel: React.FC<StoryCarouselProps> = ({ storyData, handleFirstButton }) => {
-  const { deleteStory }: OutletContext = useOutletContext();
+  const [showDelete, setShowDelete] = useState<boolean>(false);
+  const [storyId, setStoryId] = useState<number>(0);
   const { stories }: { stories: Story[] } = storyData;
+
+
+  const handleDelete = (id:number) =>{
+    setStoryId(id);
+    setShowDelete(true);
+  }
 
 
 
@@ -67,7 +72,7 @@ const StoryCarousel: React.FC<StoryCarouselProps> = ({ storyData, handleFirstBut
         :
         <Button className='CarouselButton' variant="secondary outline-secondary" onClick={() => handleFirstButton(story.id)}>Continue</Button>
       }
-        <Button className='CarouselButton' variant="secondary outline-secondary" onClick={() => deleteStory(story.id)}>Delete</Button>
+        <Button className='CarouselButton' variant="secondary outline-secondary" onClick={() => handleDelete(story.id)}>Delete</Button>
       </div>
     </Carousel.Item>
   ));
@@ -81,7 +86,14 @@ const StoryCarousel: React.FC<StoryCarouselProps> = ({ storyData, handleFirstBut
       {stories && stories.length > 0
         ?
         (
+          <>
           <Carousel className="Carousels">{storyCollection}</Carousel>
+          <DeleteModal
+            showDelete={showDelete}
+            setShowDelete={setShowDelete}
+            storyId={storyId}
+           />
+          </>
         )
         :
         (
