@@ -77,8 +77,6 @@ const StartModal: React.FC<StartModalProps> = ({ clicked, showStart, handleShowS
               }
             </select>
           </div>
-        </Modal.Body>
-        <Modal.Footer>
           {clicked
           ?
         <>
@@ -113,7 +111,8 @@ const StartModal: React.FC<StartModalProps> = ({ clicked, showStart, handleShowS
           </Button>
         </>
         }
-          
+        </Modal.Body>
+        <Modal.Footer>
         </Modal.Footer>
       </Modal>
     </>
