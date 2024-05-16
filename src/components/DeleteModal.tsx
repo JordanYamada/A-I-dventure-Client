@@ -37,11 +37,13 @@ const DeleteModal: React.FC<DeleteModalProps> = ({ showDelete, setShowDelete, st
         </Modal.Header>
         <Modal.Body className='DivContainer'>
           <h2>Are you sure you wish to Forget this Adventure?</h2>
-        </Modal.Body>
-        <Modal.Footer>
-        <Button className='CarouselButton' variant="secondary outline-secondary" onClick={handleDelete}>
+          <br/>
+          <br/>
+          <Button className='CarouselButton' variant="secondary outline-secondary" onClick={handleDelete}>
             Forget
           </Button>
+        </Modal.Body>
+        <Modal.Footer>
         </Modal.Footer>
       </Modal>
     </>
