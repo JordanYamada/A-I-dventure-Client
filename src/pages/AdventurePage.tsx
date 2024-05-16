@@ -134,6 +134,7 @@ const AdventurePage: React.FC = () => {
       handleResponse(response);
       setClicked(false);
     } catch (error) {
+      setClicked(false);
       alert("Couldn't start an adventure this time. Try again?")
       console.log("Error:", error);
     }
@@ -148,6 +149,7 @@ const AdventurePage: React.FC = () => {
       handleResponse(response);
       setClicked(false);
     } catch (error) {
+      setClicked(false);
       alert("Couldn't make an image this time. Try again?")
       console.log("Error:", error);
     }
